@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Vendor ,Document
+from .models import Vendor 
 from  shops.models import User_details
 from shops.serializers import UserCreateSerializer
 class VendorSerializer(serializers.ModelSerializer):
@@ -45,17 +45,4 @@ class VendorSerializer(serializers.ModelSerializer):
         
 
 
-class DocumentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Document
-        fields = ['document_name', 'document_file', 'document_type']
-        extra_kwargs = {
-            'document_name': {'required': True, 'max_length': 100},
-            'document_file': {'required': True},
-            'document_type': {'required': True, 'max_length': 50},
-        }
-    
-    def validate_document_name(self, value):
-        if Document.objects.filter(document_name=value).exists():
-            raise serializers.ValidationError("Document name already exists")
-        return value
+

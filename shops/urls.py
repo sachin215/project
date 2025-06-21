@@ -1,6 +1,6 @@
 from django.urls import path
 from shops.views import home_page
-from . import views
+
 from shops.views import UserCreateView, UserListView, UserUpdateView, UserDetailView, UserDeleteView, UserProfileView,UserProfile_listView
 
 from django.urls import path

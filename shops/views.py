@@ -6,6 +6,7 @@ from rest_framework import status
 from .models import User_details
 from rest_framework.permissions import AllowAny
 from .serializers import UserCreateSerializer, UserProfileSerializer, UserUpdateSerializer
+from Vendor import permision
 # Create your views here.
 def home_page(request):
     return render(request, 'home.html')
@@ -29,9 +30,11 @@ class UserListView(APIView):
     
 
 class UserUpdateView(APIView):
+    permission_classes = [permision.IsCustomeronly]
     def get(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
+            self.check_object_permissions(request,user)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = UserUpdateSerializer(user)
@@ -40,6 +43,7 @@ class UserUpdateView(APIView):
     def put(self, request, pk): 
         try:
             user = User.objects.get(pk=pk)
+            self.check_object_permissions(request,user)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = UserUpdateSerializer(user, data=request.data)
@@ -53,22 +57,30 @@ class UserDetailView(APIView):
     def get(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
+
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        serializer = UserCreateSerializer(user)
+        serializer = UserCreateSerializer(user,context={'request': request})
+        
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
 class UserDeleteView(APIView):
-    # permission_classes = [AllowAny] # Allow any user to access this view
+    permission_classes = [permision.IsCustomeronly]
     def get(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
+            self.check_object_permissions(request,user)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        serializer = UserCreateSerializer(user)
+        serializer = UserCreateSerializer(user,context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
     def delete(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
+            self.check_object_permissions(request,user)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         user.delete()
@@ -87,21 +99,23 @@ class UserDeleteView(APIView):
 #         return Response({"message": "Token Generated successfully Please Contact Admin ,call 9731540114"}, status=status.HTTP_200_OK)
 
 class UserProfileView(APIView):
-    # permission_classes = [AllowAny] # Allow any user to access this view
+    permission_classes = [permision.IsCustomeronly] # Allow any user to access this view
     def get(self, request, pk):
         try:
             user_details = User_details.objects.get(pk=pk)
+            self.check_object_permissions(request,user_details)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         
         serializer = UserProfileSerializer(user_details)
        
-        return Response({"profile": serializer.data, "user":user_details.pk}, status=status.HTTP_200_OK)
+        return Response({"profile": serializer.data, "user":user_details.user.username}, status=status.HTTP_200_OK)
     
 
 class UserProfile_listView(APIView):
-    # permission_classes = [AllowAny] # Allow any user to access this view
+    permission_classes=[permision.IsCustomeronly]
     def get(self, request):
         user_details = User_details.objects.all()
+        self.check_object_permissions(request,user_details)
         serializer = UserProfileSerializer(user_details, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

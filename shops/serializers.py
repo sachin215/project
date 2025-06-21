@@ -84,9 +84,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
     
 
 class UserUpdateSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name','password']
+        fields = ['username', 'email', 'first_name', 'last_name','password',]
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -129,10 +130,11 @@ class UserchangePasswordSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     role=serializers.CharField(source='get_Role_display', read_only=True)  # This will return the display value of the role field
+    username=serializers.CharField(source='user.username',read_only=True)
 
     class Meta:
         model = User_details
-        fields = ['phone_number', 'address', 'city', 'pincode', 'profile_picture', 'cover_picture', 'role']  # This will include all fields from the User_details model
+        fields = ['username','phone_number', 'address', 'city', 'pincode', 'profile_picture', 'cover_picture', 'role']  # This will include all fields from the User_details model
 
     def create(self, validated_data):
         user_details = User_details(**validated_data)

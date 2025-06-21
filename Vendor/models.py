@@ -14,12 +14,3 @@ class Vendor(models.Model):
 
     def __str__(self):
         return self.Vendor_name
-    
-class Document(models.Model):
-    document_name = models.CharField(max_length=100)
-    document_file = models.FileField(upload_to='vendor_documents/')
-    document_type = models.CharField(max_length=50)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):  
-        return f"{self.document_type} - {self.document_name}"
