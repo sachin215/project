@@ -16,8 +16,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     Role = serializers.IntegerField(
         
         write_only=True,
-        required=False,
-    
+        required=False,default=1
     )
     class Meta:
         model = User

@@ -7,24 +7,25 @@ from .models import User_details
 from rest_framework.permissions import AllowAny
 from .serializers import UserCreateSerializer, UserProfileSerializer, UserUpdateSerializer
 from Vendor import permision
+from rest_framework import generics
 # Create your views here.
 def home_page(request):
     return render(request, 'home.html')
 
-class UserCreateView(APIView):
-
-    # permission_classes = [AllowAny] # Allow any user to access this view
-    def post(self, request):
-        serializer = UserCreateSerializer(data=request.data,context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"User":serializer.data,"message": "User created successfully"}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class UserCreateView(generics.CreateAPIView):
+    serializer_class=UserCreateSerializer
+    # def post(self, request):
+    #     serializer = UserCreateSerializer(data=request.data,context={'request': request})
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response({"User":serializer.data,"message": "User created successfully"}, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class UserListView(APIView):
-    # permission_classes = [AllowAny] # Allow any user to access this view
+    permission_classes = [permision.IsCustomeronly]
     def get(self, request):
         users = User.objects.all()
+        self.check_object_permissions(request,users)
         serializer = UserCreateSerializer(users, many=True,context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -53,11 +54,11 @@ class UserUpdateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class UserDetailView(APIView):
-    # permission_classes = [AllowAny] # Allow any user to access this view
+    permission_classes = [permision.IsCustomeronly]
     def get(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
-
+            self.check_object_permissions(request,user)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = UserCreateSerializer(user,context={'request': request})
