@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from shops.views import home_page
 from shop.settings import STATIC_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home_page,name='homepage'),
     path('shop/', include('shops.urls')),
     path('api-auth/', include('rest_framework.urls'), name='rest_framework_auth'),
     path('vendor/', include('Vendor.urls')),
