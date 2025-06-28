@@ -1,27 +1,136 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-    </style>
+    {% load static %}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodieExpress - Home</title>
+  <link rel="stylesheet" href="{% static './home.css' %}">
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>Thank you for visiting! I hope you find what you're looking for.</p>
+  <nav class="navbar">
+    <div class="logo">🍔 FoodieExpress</div>
+    <ul>
+      <li><a href="{% url 'home'%}">Home</a></li>
+      <li><a href="#categories">Menu</a></li>
+      <li><a href="{% url 'login'%}">Login</a></li>
+      <li><a href="{% url 'Signup'%}">SignUp</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Delicious Meals Delivered Fast</h1>
+    <p>Craving something tasty? We’ve got you covered—order now and enjoy your favorite dishes from the comfort of your home.</p>
+  </section>
+
+<h1 class="section-title" id="categories">🍽️ Explore Our Menu</h1>
+  <div class="category" >
+    <h2>Starters</h2>
+    <div class="items">
+    <div class="item">
+            <div><img src="https://img.freepik.com/premium-photo/fried-vegetable-spring-rolls-with-sweet-chili-sauce-wooden-dish-white-plate-ai_1038983-10498.jpg?w=1380" alt=""></div>
+        <div>
+            <h4>Spring Rolls</h4><p>Crispy and savory veggie rolls</p>
+        </div>
+      </div>
+      <div class="item">
+            <div><img src="https://www.theepicureanmouse.com/wp-content/uploads/2022/10/sourdough-garlic-bread-.jpg" alt=""></div>
+            <div>
+                <h4>Garlic Bread</h4><p>Toasted with herbs and cheese</p>
+            </div>
+        </div>
+        <div class="item">
+            <div><img src="https://indiaindia.com.cy/wp-content/uploads/2022/01/india-india-restaurant-nicosia-cyprus-vegetable-samosas-1200x800-1-1.jpg" alt=""></div>
+            <div>
+                <h4>VEGETABLE SAMOSA </h4><p>Crispy fried pastry ﬁlled with potatoes, green peas & herbs (2 pcs) (V)</p>
+            </div>
+        </div>
+  </div>
+  </div>
+
+  <div class="category">
+    <h2>Main Course</h2>
+    <div class="items">
+      <div class="item">
+                    <div><img src="https://cdn.dotpe.in/longtail/store-items/6385438/Lb0Fepaa.jpeg" alt=""></div>
+            <div>
+                <h4>Margherita Pizza</h4><p>Fresh mozzarella and basil</p>
+            </div>
+        </div>
+      <div class="item">
+        <div><img src="https://myfoodstory.com/wp-content/uploads/2021/07/Paneer-Butter-Masala-3.jpg" alt=""></div>
+        <div>
+            <h4>Paneer Butter Masala</h4><p>Served with hot naan</p>
+        </div>
+      </div>
+    <div class="item">
+        <div><img src="https://th.bing.com/th/id/OIP.GTFvqk4G6ZiKPlVtS_AvMQHaE7?w=626&h=417&rs=1&pid=ImgDetMain" alt=""></div>
+        <div>
+            <h4>TANDOORI CHICKEN WINGS</h4><p>Grilled chicken wings marinated in yogurt & spices (6 pcs)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Desserts</h2>
+    <div class="items">
+      <div class="item">
+                <div><img src="https://prashantcorner.com/cdn/shop/files/DakGulabJamunSR-2.jpg?v=1718083866" alt=""></div>
+        <div>
+            <h4>Gulab Jamun</h4><p>Sweet syrupy goodness</p></div>
+        </div>
+        
+      <div class="item">
+                <div><img src="https://www.fnp.com//images/pr/l/v20230928181509/creamy-chocolate-dream-cake-half-kg_1.jpg" alt=""></div>
+        <div>
+            <h4>Chocolate Lava Cake</h4><p>Warm, gooey center</p></div>
+        </div>
+    <div class="item">
+                <div><img src="https://th.bing.com/th/id/R.44aebf1118cb6321974ddb32b12fe429?rik=%2f2u8odlNAZTcDw&riu=http%3a%2f%2fcdn2.tmbi.com%2fTOH%2fImages%2fPhotos%2f37%2f1200x1200%2fAngel-Strawberry-Dessert_exps32651_CX952288B12_21_2b_RMS.jpg&ehk=BEcsTR1Hlj68zAxuc1tm1Yteubb%2boCa1IOOGMbRt24o%3d&risl=&pid=ImgRaw&r=0" alt=""></div>
+        <div>
+            <h4>Angel Strawberry Dessert Recipe</h4><p>Taste of Home</p></div>
+        </div>
+    </div>
+  </div>
+
+  <footer style="background-color: #333; color: #fff; padding: 40px 20px;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto;">
+    
+    <div style="flex: 1 1 200px; margin: 10px;">
+      <h3>🍔 FoodieExpress</h3>
+      <p>Delivering happiness, one bite at a time! Order from your favorite restaurants and get food delivered to your doorstep.</p>
+    </div>
+
+    <div style="flex: 1 1 150px; margin: 10px;">
+      <h4>Quick Links</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li><a href="#" style="color: #fff; text-decoration: none;">Home</a></li>
+        <li><a href="#" style="color: #fff; text-decoration: none;">Menu</a></li>
+        <li><a href="#" style="color: #fff; text-decoration: none;">Offers</a></li>
+        <li><a href="#" style="color: #fff; text-decoration: none;">Contact</a></li>
+      </ul>
+    </div>
+
+    <div style="flex: 1 1 200px; margin: 10px;">
+      <h4>Contact Us</h4>
+      <p>Email: support@foodieexpress.com</p>
+      <p>Phone: +91-98765-43210</p>
+      <p>Address: Bengaluru, India</p>
+    </div>
+
+    <div style="flex: 1 1 150px; margin: 10px;">
+      <h4>Follow Us</h4>
+      <p style="font-size: 1.2rem;">📘 📷 🐦</p>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 30px; font-size: 0.9rem;">
+    &copy; 2025 FoodieExpress. All rights reserved.
+  </div>
+</footer>
 </body>
 </html>

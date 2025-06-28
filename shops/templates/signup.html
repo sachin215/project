@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="UTF-8" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{% static './signup.css' %}">
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create Your Account</h2>
+    {% csrf_token %}
+    <form method="POST" class="forum-container" id="signupForm">
+      <div>
+          <input type="text" name="username" placeholder="Username" required />
+          <p>{{user_err}}</p>
+          <input type="email" name="email" placeholder="Email address" required />
+      </div>
+      <div>
+          <input type="text" name="first_name" placeholder="First name" required />
+          <input type="text" name="last_name" placeholder="Last name" required />
+      </div>
+      <div>
+          <input type="password" name="password" placeholder="Password" required />
+          <input type="password" name="Confirm_password" placeholder="Confirm Password" required />
+      </div>
+      <div id="signupMessage" style="font-style: italic; color: red; margin-bottom: 10px;"></div>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</body>
+<script>
+  function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.startsWith(name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+const csrftoken = getCookie("csrftoken");
+  document.getElementById("signupForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      username: form.username.value,
+      email: form.email.value,
+      first_name: form.first_name.value,
+      last_name: form.last_name.value,
+      password: form.password.value,
+      password2: form.Confirm_password.value,
+    };
+
+    try {
+      const response = await fetch("/shop/users/create/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", "X-CSRFToken": csrftoken
+
+        },
+        body: JSON.stringify(data),
+      });
+const messageDiv = document.getElementById("signupMessage");
+      const result = await response.json();
+      if (response.ok) {
+  messageDiv.style.color = "green";
+  messageDiv.innerText = "Signup successful! Welcome, " + result.User.username;
+  // Optionally redirect or reset form
+} else {
+  messageDiv.style.color = "red";
+  // Handle Django field errors (e.g. username already exists)
+  let errorText = "";
+  for (let field in result) {
+    errorText += `${field}: ${result[field]}\n`;
+  }
+  messageDiv.innerText = errorText;
+    }
+  } catch (error) {
+
+      console.error("Error:", error);
+      alert("Something went wrong Server not Respond. Please try again.");
+    }
+  });
+</script>
+</html>

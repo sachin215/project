@@ -1,0 +1,146 @@
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color: #ff4d4d;
+      position:sticky;
+      top:0;
+      z-index: 10;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar li {
+      margin: 0 15px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #ffe6e6;
+    }
+        .section-title {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 2rem;
+      color: #ff4d4d;
+    }
+
+    .category {
+      margin: 30px 20px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .category h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+    }
+
+    .item {
+      flex: 1 1 200px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .item h4 {
+      margin: 10px 0 5px;
+    }
+
+    .item p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+        .section-title {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 2rem;
+      color: #ff4d4d;
+    }
+
+    .category {
+      margin: 30px 20px;
+    }
+
+    .category h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .item {
+      display: flex;
+      padding: 15px;
+      background-color: #fff;
+      /* border: 1px solid #f10000; */
+      border-radius: 8px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .item h4 {
+      margin: 10px 0 5px;
+    }
+
+    .item p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .hero{
+ 
+      /* border: red 1px solid; */
+      justify-items: center;
+      align-content: center;
+    }
+    
+    .items img{
+      border: red 1px solid;
+      width: 70px;
+      height: 60px;
+    }
+   
+  .item div{
+    margin: 0 15px ;
+  }

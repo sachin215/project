@@ -53,13 +53,14 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'shop.urls'
 MEDIA_URL= '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
+            'context_processors': ['django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -67,6 +68,9 @@ TEMPLATES = [
         },
     },
 ]
+STATIC_URL = '/static/'
+# STATICFILES_DIRS = [BASE_DIR / "static"]  # Optional, for global static files
+
 
 WSGI_APPLICATION = 'shop.wsgi.application'
 

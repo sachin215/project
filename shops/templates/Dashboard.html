@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    .dashboard-container {
+      padding: 2em;
+    }
+    .card {
+      background: white;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Your Dashboard, {{ user.username }}!</h1>
+  </header>
+
+  <div class="dashboard-container">
+    <div class="card">
+      <h2>Account Info</h2>
+      <p>User :{{user.username}}</p>
+      <p>Email: {{ user.email }}</p>
+    </div>
+
+    <div class="card">
+      <h2>Recent Activity</h2>
+      <p>No recent actions yet.</p>
+      <p>{{session.data.profile}}</p>
+    </div>
+
+    <div class="card">
+      <h2>Quick Links</h2>
+      <ul>
+        <li><a href="{% url 'profile'%}">Edit Profile </a></li>
+        <li><a href="/orders/">My Orders</a></li>
+        <li><a href="{{logout}}">Logout </a></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

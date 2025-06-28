@@ -1,0 +1,66 @@
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .signin-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .signin-container h2 {
+      text-align: center;
+      color: #ff4d4d;
+      margin-bottom: 30px;
+    }
+
+    .signin-container input[type="text"],
+    .signin-container input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .signin-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .signin-container button:hover {
+      background-color: #e64545;
+    }
+
+    .signin-container .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .signin-container a {
+      color: #ff4d4d;
+      text-decoration: none;
+    }
+
+    .signin-container a:hover {
+      text-decoration: underline;
+    }

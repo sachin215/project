@@ -21,8 +21,8 @@ class User_details(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     pincode = models.CharField(max_length=10, null=True, blank=True)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
-    cover_picture = models.ImageField(upload_to='cover_pictures/', null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/',default='profile_pictures/default.png')
+    cover_picture = models.ImageField(upload_to='cover_pictures/', default="cover_pictures/default.png")
 
     def __str__(self):
         return f"{self.user.email}"

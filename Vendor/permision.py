@@ -22,5 +22,5 @@ class IsCustomeronly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS and request.user.is_superuser:
             return True
         else:
-            return request.user == obj or request.user.is_superuser
+            return request.user == obj.user or request.user.is_superuser
     
